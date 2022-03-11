@@ -8,6 +8,9 @@ public class Teste {
         Professor p2 = new Professor();
         p2.setNome("Cristina");
 
+        Professor p3 = new Professor();
+        p2.setNome("Novo");
+
         Disciplina d1 = new Disciplina();
         d1.setNome("ENG III");
         d1.setQtdAulas(4);
@@ -20,6 +23,8 @@ public class Teste {
         d2.setProf(p1);
 
         d2.setProf(p2);
+        d2.setProf(null);
+        d2.setProf(p3);
 
     }
 }
