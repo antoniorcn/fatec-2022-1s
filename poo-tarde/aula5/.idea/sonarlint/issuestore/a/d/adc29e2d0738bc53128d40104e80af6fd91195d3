@@ -1,0 +1,7 @@
+
+[
+java:S1854"9Remove this useless assignment to local variable "texto".(½½ÿìüÿÿÿÿ8š––ª÷/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(›²çË8¥Âª÷/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ÿ¦éÚ8Êıª÷/
+f
+java:S2583"DChange this condition so that it does not always evaluate to "false"(ö¿‹½úÿÿÿÿ8Œ‘™ª÷/
