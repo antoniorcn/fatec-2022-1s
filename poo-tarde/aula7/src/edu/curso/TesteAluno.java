@@ -20,8 +20,7 @@ public class TesteAluno {
 
     public static void criarAlunos2() {
         GestaoAlunos gestao = new GestaoAlunos();
-        gestao.criar();
-        gestao.criar();
+        gestao.menu();
     }
 
     public static void main(String[] args) {
