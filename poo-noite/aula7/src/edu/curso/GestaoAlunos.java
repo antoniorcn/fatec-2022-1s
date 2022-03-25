@@ -4,6 +4,7 @@ import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.function.DoubleToIntFunction;
 
 public class GestaoAlunos {
     private int indice;
@@ -35,12 +36,39 @@ public class GestaoAlunos {
 
         // Pesquise no vetor alunos o primeiro aluno que estiver com
         // este RA informado pelo usuário e mostre os dados na tela.
+        for (Aluno a : this.alunos) {
+            if (a != null && a.getRa().equals(ra)) {
+                System.out.println("Dados do Aluno");
+                System.out.println("ID: " + a.getId());
+                System.out.println("RA: " + a.getRa());
+                System.out.println("NOME: " + a.getNome());
+                System.out.println("NASCIMENTO: " + a.getNascimento());
+            }
+        }
     }
 
     public void listarAlunos() {
         for(Aluno a : this.alunos) {
             if (a != null) {
                 System.out.println(a);
+            }
+        }
+    }
+
+    public void atualizar() {
+        System.out.println("Atualizar dados do Aluno");
+        System.out.println("Por favor digite o RA do aluno a ser atualizado");
+        String ra = input.nextLine();
+        for (Aluno a : this.alunos) {
+            if (a != null && a.getRa().equals(ra)) {
+                System.out.println("Informe o novo NOME do aluno");
+                a.setNome(input.nextLine());
+                System.out.println("Informe o novo NASCIMENTO do aluno");
+                String nascimento = input.nextLine();
+                LocalDate data = LocalDate.parse(nascimento, formatter);
+                a.setNascimento(data);
+                System.out.println("Aluno atualizado com sucesso");
+                break;
             }
         }
     }

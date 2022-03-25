@@ -19,6 +19,7 @@ public class TesteAluno {
         gestaoAlunos.criar();
         gestaoAlunos.criar();
         gestaoAlunos.listarAlunos();
+        gestaoAlunos.mostrarAluno();
     }
 
 
