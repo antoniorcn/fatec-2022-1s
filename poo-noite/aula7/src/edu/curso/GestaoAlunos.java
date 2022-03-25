@@ -1,21 +1,19 @@
 package edu.curso;
 
-import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.function.DoubleToIntFunction;
 
 public class GestaoAlunos {
     private int indice;
-    private Aluno[] alunos = new Aluno[1000];
+    private AlunoFatec[] alunos = new AlunoFatec[1000];
     private Scanner input = new Scanner(System.in);
     private DateTimeFormatter formatter =
             DateTimeFormatter.ofPattern("d/MM/yyyy");
 
     public void criar() {
-        System.out.println("Criação de Aluno");
-        Aluno a = new Aluno();
+        System.out.println("Criação de AlunoFatec");
+        AlunoFatec a = new AlunoFatec();
         System.out.println("Informe o RA do novo aluno");
         a.setRa(input.nextLine());
         System.out.println("Informe o NOME do novo aluno");
@@ -26,19 +24,19 @@ public class GestaoAlunos {
         a.setNascimento(data);
         this.alunos[this.indice] = a;
         this.indice++;
-        System.out.println("Aluno foi criado com sucesso");
+        System.out.println("AlunoFatec foi criado com sucesso");
     }
 
     public void mostrarAluno() {
-        System.out.println("Mostrar dados do Aluno");
+        System.out.println("Mostrar dados do AlunoFatec");
         System.out.println("Por favor digite o RA do aluno a ser mostrado");
         String ra = input.nextLine();
 
         // Pesquise no vetor alunos o primeiro aluno que estiver com
         // este RA informado pelo usuário e mostre os dados na tela.
-        for (Aluno a : this.alunos) {
+        for (AlunoFatec a : this.alunos) {
             if (a != null && a.getRa().equals(ra)) {
-                System.out.println("Dados do Aluno");
+                System.out.println("Dados do AlunoFatec");
                 System.out.println("ID: " + a.getId());
                 System.out.println("RA: " + a.getRa());
                 System.out.println("NOME: " + a.getNome());
@@ -48,7 +46,7 @@ public class GestaoAlunos {
     }
 
     public void listarAlunos() {
-        for(Aluno a : this.alunos) {
+        for(AlunoFatec a : this.alunos) {
             if (a != null) {
                 System.out.println(a);
             }
@@ -56,10 +54,10 @@ public class GestaoAlunos {
     }
 
     public void atualizar() {
-        System.out.println("Atualizar dados do Aluno");
+        System.out.println("Atualizar dados do AlunoFatec");
         System.out.println("Por favor digite o RA do aluno a ser atualizado");
         String ra = input.nextLine();
-        for (Aluno a : this.alunos) {
+        for (AlunoFatec a : this.alunos) {
             if (a != null && a.getRa().equals(ra)) {
                 System.out.println("Informe o novo NOME do aluno");
                 a.setNome(input.nextLine());
@@ -67,8 +65,51 @@ public class GestaoAlunos {
                 String nascimento = input.nextLine();
                 LocalDate data = LocalDate.parse(nascimento, formatter);
                 a.setNascimento(data);
-                System.out.println("Aluno atualizado com sucesso");
+                System.out.println("AlunoFatec atualizado com sucesso");
                 break;
+            }
+        }
+    }
+
+    public void excluir() {
+        System.out.println("Excluir AlunoFatec");
+        System.out.println("Por favor digite o RA do aluno a ser excluido");
+        String ra = input.nextLine();
+        for (int i = 0; i < this.alunos.length; i++) {
+            AlunoFatec a = this.alunos[i];
+            if (a != null && a.getRa().equals(ra)) {
+                this.alunos[i] = null;
+                System.out.println("AlunoFatec excluído com sucesso");
+                break;
+            }
+        }
+    }
+
+    public void menu() {
+        boolean sair = false;
+        while(!sair) {
+            System.out.println("MENU PRINCIPAL");
+            System.out.println("Opções: ");
+            System.out.println("(C)riar\t\t(E)xibir\t\t(R)emover");
+            System.out.println("(A)tualizar\t\t(L)istar\t\t(S)air");
+
+            String textoMaiusculo = input.nextLine().toUpperCase();
+            char letra = textoMaiusculo.charAt(0);
+
+            if (letra == 'C') {
+                criar();
+            } else if (letra == 'E') {
+                mostrarAluno();
+            } else if (letra == 'R') {
+                excluir();
+            } else if (letra == 'A') {
+                atualizar();
+            } else if (letra == 'L') {
+                listarAlunos();
+            } else if (letra == 'S') {
+                sair = true;
+            } else {
+                System.out.println("Opção (" + letra + ") inválida");
             }
         }
     }
@@ -80,10 +121,10 @@ public class GestaoAlunos {
         this.indice = indice;
     }
 
-    public Aluno[] getAlunos() {
+    public AlunoFatec[] getAlunos() {
         return alunos;
     }
-    public void setAlunos(Aluno[] alunos) {
+    public void setAlunos(AlunoFatec[] alunos) {
         this.alunos = alunos;
     }
 }

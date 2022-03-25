@@ -2,7 +2,7 @@ package edu.curso;
 
 import java.time.LocalDate;
 
-public class Aluno {
+public class AlunoFatec {
     private long id;
     private String ra;
     private String nome;
