@@ -17,8 +17,7 @@ public class PetBoundary extends Application {
     private Button btnAdicionar = new Button("Adicionar");
     private Button btnPesquisar = new Button("Pesquisar");
 
-    private Pet[] array = new Pet[100];
-    private int petIndex = 0;
+    private PetControl control = new PetControl();
 
     public Pet boundaryToEntity() {
         Pet p = new Pet();
@@ -46,16 +45,12 @@ public class PetBoundary extends Application {
 
         btnAdicionar.setOnAction( (e) -> {
             Pet p = boundaryToEntity();
-            array[petIndex++] = p;
+            control.adicionar(p);
         });
 
         btnPesquisar.setOnAction( (e) -> {
-            for (int i = 0; i < petIndex; i++) {
-                Pet p = array[i];
-                if (p != null && p.getNome().contains(txtNome.getText())) {
-                    entityToBoundary(p);
-                }
-            }
+            Pet p = control.pesquisar(txtNome.getText());
+            entityToBoundary(p);
         });
 
         stage.setScene(scn);
