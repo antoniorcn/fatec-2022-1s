@@ -39,7 +39,7 @@ public class PetBoundary extends Application {
         txtRaca.setText(p.getRaca());
         txtNascimento.setText(p.getNascimento().format(fmt));
     }
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         GridPane grid = new GridPane();
