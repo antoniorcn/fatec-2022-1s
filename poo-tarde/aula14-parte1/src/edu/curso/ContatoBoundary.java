@@ -40,7 +40,7 @@ public class ContatoBoundary extends Application {
         TableColumn<Contato, String> col2 = new TableColumn<>("Telefone");
         col2.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 
-        table.getColumns().addAll(col1, col2);
+        table.getColumns().addAll(col1, col2)
 
         table.setItems(control.getContatos());
 
