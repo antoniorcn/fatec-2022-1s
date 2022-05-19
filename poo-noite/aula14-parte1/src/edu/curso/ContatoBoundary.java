@@ -3,9 +3,9 @@ package edu.curso;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -15,11 +15,15 @@ public class ContatoBoundary extends Application {
     private Button btnAdicionar = new Button("Adicionar");
     private Button btnPesquisar = new Button("Pesquisar");
     private ContatoControl control = new ContatoControl();
+    private TableView<Contato> table = new TableView<>();
 
     @Override
     public void start(Stage stage) throws Exception {
+        BorderPane principal = new BorderPane();
         GridPane grid = new GridPane();
-        Scene scn = new Scene(grid, 400, 200);
+        principal.setTop(grid);
+        principal.setCenter(table);
+        Scene scn = new Scene(principal, 400, 200);
 
         grid.add(new Label("Nome: "), 0, 0);
         grid.add(txtNome, 1,0);
@@ -30,6 +34,15 @@ public class ContatoBoundary extends Application {
 
         Bindings.bindBidirectional(control.nomeProperty(), txtNome.textProperty());
         Bindings.bindBidirectional(control.telefoneProperty(), txtTelefone.textProperty());
+        TableColumn<Contato, String> col1 = new TableColumn<>("Nome");
+        col1.setCellValueFactory(new PropertyValueFactory<>("nome"));
+
+        TableColumn<Contato, String> col2 = new TableColumn<>("Telefone");
+        col2.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+
+        table.getColumns().addAll(col1, col2);
+
+        table.setItems(control.getContatos());
 
         btnAdicionar.setOnAction((e) -> {
             control.adicionar();
