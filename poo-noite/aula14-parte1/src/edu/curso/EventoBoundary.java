@@ -2,6 +2,8 @@ package edu.curso;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -47,13 +49,25 @@ public class EventoBoundary extends Application {
 
         principal.setCenter(control.getTable());
 
-        btnAdicionar.setOnAction((e)-> {
-            control.adicionar();
-        });
+//        btnAdicionar.setOnAction(
+//                new EventHandler<ActionEvent>() {
+//                    @Override
+//                    public void handle(ActionEvent event) {
+//                        System.out.println(
+//                                "Adicionar apertado");
+//                    }
+//                }
+//        );
 
-        btnPesquisar.setOnAction((e)-> {
-            control.pesquisar();
-        });
+        btnAdicionar.setOnAction( (event) -> {
+            System.out.println("Adicionar apertado Lambda");
+        } );
+
+//        btnAdicionar.setOnAction((e)-> {
+//            control.adicionar();
+//        });
+
+        btnPesquisar.setOnAction(e -> control.pesquisar());
 
         Scene scn = new Scene(principal, 300, 200);
         stage.setScene(scn);
